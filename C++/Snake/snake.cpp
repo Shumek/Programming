@@ -36,12 +36,12 @@ snakeclass::snakeclass()
 	direction = 'l';
 	srand(time(0));
 	putfood();
-	//put the edges
+	//отрисовка границ
 	drawRect(0, 0, SDL_MapRGB(screen->format, 0xff, 0x00, 0x00), width, 10);
 	drawRect(0, 0, SDL_MapRGB(screen->format, 0xff, 0x00, 0x00), 10, height - 20);
 	drawRect(0, height - 30, SDL_MapRGB(screen->format, 0xff, 0x00, 0x00), width, 10);
 	drawRect(width - 10, 0, SDL_MapRGB(screen->format, 0xff, 0x00, 0x00), 10, height - 20);
-	//draw the snake*/
+	//Отрисовка змеи
 	for (int i = 0; i<snake.size(); i++)
 	{
 		drawRect(snake[i].x * 10, snake[i].y * 10, SDL_MapRGB(screen->format, 0x00, 0xff, 0x00));
@@ -74,8 +74,9 @@ void snakeclass::putfood()
 
 bool snakeclass::collision()
 {
+    //Врезаетс в стенку
 	if (snake[0].x == 0 || snake[0].x == width / 10 - 1 || snake[0].y == 0 || snake[0].y == height / 10 - 3)
-		return 1;
+		return true;
 
 	for (int i = 2; i<snake.size(); i++)
 	if (snake[0].x == snake[i].x && snake[i].y == snake[0].y)
